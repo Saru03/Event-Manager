@@ -17,5 +17,5 @@ This is a web application that allows users to log in via Google SSO, view their
 
 
 ## Setup instructions
-#git clone <repository-link>
+# git clone <repository-link>
 - cd <project-folder>
