@@ -1,5 +1,8 @@
 ## Project Overview
 This is a web application that allows users to log in via Google SSO, view their Google Calendar events, and filter events by date. The app is built with Node.js, Express, React, and Google Calendar API. It demonstrates backend, frontend, API integration, and UI/UX design skills.
+![Screenshot (753)](https://github.com/user-attachments/assets/eb37965d-e81d-4a3f-a3fe-e3bc9653248c)
+![Screenshot (752)](https://github.com/user-attachments/assets/5eb6339c-fccb-4f89-b531-73d2ec9d65e4)
+
 ## Tech Stack
 - **Frontend**: React (for building a responsive and dynamic user interface)
 - **Backend**: Node.js and Express (for handling authentication and API integration)
