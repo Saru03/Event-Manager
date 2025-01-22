@@ -53,10 +53,10 @@ passport.deserializeUser((user,done)=>done(null,user))
 app.get("/auth/google",passport.authenticate('google',{scope:["profile","email","https://www.googleapis.com/auth/calendar.events"]}))
 
 app.get("/auth/google/callback",passport.authenticate('google',{failureRedirect:"https://event-manager-oicx.onrender.com/auth/google"}),(req,res)=>{
-    res.redirect('https://event-manager-oicx.onrender.com/events'); 
+    res.redirect('https://event-manager-oicx.onrender.com/api/events'); 
 })
 
-app.get("/events",async (req,res)=>{
+app.get("/api/events",async (req,res)=>{
     if (!req.user || !req.user.accessToken) {
         return res.status(401).json({ 
             message: "Not authenticated",
@@ -93,7 +93,7 @@ app.get("/events",async (req,res)=>{
     }
 })
 
-app.delete("/events/:eventId", async (req, res) => {
+app.delete("/api/events/:eventId", async (req, res) => {
     if (!req.user || !req.user.accessToken) {
         return res.status(401).json({
             message: "Not authenticated",
