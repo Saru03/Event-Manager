@@ -6,13 +6,14 @@ import { SignInPage } from '@toolpad/core/SignInPage';
 import { useTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; 
-
+import { useNavigate } from 'react-router-dom';
 const providers = [
     { id: 'google', name: 'Google' },
   ];
 
   const signIn = (provider) => {
     window.location.href = "https://event-manager-oicx.onrender.com/auth/google";
+    navigate('/events')
   };
   
   
