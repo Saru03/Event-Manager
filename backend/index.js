@@ -130,11 +130,14 @@ app.get("/logout",(req,res)=>{
     req.logOut();
     req.redirect("/auth/google");
 })
+app.use(express.static(path.join(_dirname, "frontend/dist")));
 
-app.use(express.static(path.join(_dirname,"/frontend/dist")))
-app.get('*',(_,res)=>{
-    res.sendFile(path.resolve(_dirname,"frontend","dist","index.html"));
-})
+app.get('*', (req, res) => {
+    if (!req.originalUrl.startsWith('/auth') && !req.originalUrl.startsWith('/events')) {
+        res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
+    }
+});
+
 
 app.listen(port,()=>{
     console.log(`Example app listening on port ${port}`)
