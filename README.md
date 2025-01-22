@@ -17,5 +17,16 @@ This is a web application that allows users to log in via Google SSO, view their
 
 
 ## Setup instructions
-# git clone <repository-link>
-- cd <project-folder>
+- git clone 
+- cd "Event Manager"
+- npm run build
+- npm install
+- npm run dev
+### Environment Variables
+Create a `.env` file in the root directory with the following keys:
+- `GOOGLE_CLIENT_ID`: Your Google OAuth Client ID
+- `GOOGLE_CLIENT_SECRET`: Your Google OAuth Client Secret
+- `GOOGLE_CALLBACK_URL`: Callback URL (e.g., `http://localhost:3000/auth/google/callback`)
+
+**Note**: Since the app is not verified by Google, you will see a warning screen during the Google login process. Click on "Advanced" and then "Proceed to [your app name]" to continue.
+
