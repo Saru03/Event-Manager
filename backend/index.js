@@ -12,6 +12,8 @@ const path = require('path')
 
 const _dirname = path.resolve();
 
+app.use(express.static(path.join(_dirname, "frontend/dist")));
+
 app.use(cors({
     origin: 'https://event-manager-oicx.onrender.com',
     credentials: true,
@@ -49,6 +51,8 @@ passport.use(new GoogleStrategy({
 
 passport.serializeUser((user,done)=>done(null,user))
 passport.deserializeUser((user,done)=>done(null,user))
+
+
 
 app.get("/auth/google",passport.authenticate('google',{scope:["profile","email","https://www.googleapis.com/auth/calendar.events"]}))
 
@@ -130,12 +134,9 @@ app.get("/logout",(req,res)=>{
     req.logOut();
     req.redirect("/auth/google");
 })
-app.use(express.static(path.join(_dirname, "frontend/dist")));
-
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
 });
-
 
 app.listen(port,()=>{
     console.log(`Example app listening on port ${port}`)
