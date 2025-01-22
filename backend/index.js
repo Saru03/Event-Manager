@@ -133,9 +133,7 @@ app.get("/logout",(req,res)=>{
 app.use(express.static(path.join(_dirname, "frontend/dist")));
 
 app.get('*', (req, res) => {
-    if (!req.originalUrl.startsWith('/auth')) {
-        res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
-    }
+    res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
 });
 
 
