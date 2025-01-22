@@ -22,6 +22,10 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CircularProgress from '@mui/material/CircularProgress';
 
+const API_URL = import.meta.env.PROD
+    ? 'https://event-manager-oicx.onrender.com/api'
+    : 'http://localhost:3000/api';
+    
 function Events() {
     const [events, setEvents] = useState([])
     const [allEvents, setAllEvents] = useState([]);
@@ -34,7 +38,7 @@ function Events() {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const response = await axios.get('https://event-manager-oicx.onrender.com/api/events', { withCredentials: true })
+                const response = await axios.get(`${API_URL}/events`, { withCredentials: true })
                 console.log(response.data)
                 const eventsData = response.data.events || [];
                 const formattedEvents = eventsData.map((event) => ({
@@ -70,7 +74,7 @@ function Events() {
 
         setLoading(true);
         try {
-            await axios.delete(`https://event-manager-oicx.onrender.com/api/events/${eventId}`, { 
+            await axios.delete(`${API_URL}/events/${eventId}`, { 
                 withCredentials: true 
             });
             const updatedEvents = events.filter(event => event.id !== eventId);
