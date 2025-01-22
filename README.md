@@ -17,16 +17,21 @@ This is a web application that allows users to log in via Google SSO, view their
 
 
 ## Setup instructions
-- git clone 
+### 1. The website is deployed on this URL :- https://event-manager-oicx.onrender.com
+- Since google requires verified app to access google services, the project on google cloud console is in testing phase
+- Test users can be added
+### 2.To set up locally run the following command in vs code terminal/git bash/command prompt
+- git clone https://github.com/Saru03/Event-Manager.git
 - cd "Event Manager"
-- npm run build
 - npm install
-- npm run dev
-### Environment Variables
+- cd frontend / npm install / npm run build
+#### Environment Variables
 Create a `.env` file in the root directory with the following keys:
 - `GOOGLE_CLIENT_ID`: Your Google OAuth Client ID
 - `GOOGLE_CLIENT_SECRET`: Your Google OAuth Client Secret
-- `GOOGLE_CALLBACK_URL`: Callback URL (e.g., `http://localhost:3000/auth/google/callback`)
+- `GOOGLE_CALLBACK_URL`: Callback URL (`http://localhost:3000/auth/google/callback`)
+#### To start server run "npm run dev"
+
 
 **Note**: Since the app is not verified by Google, you will see a warning screen during the Google login process. Click on "Advanced" and then "Proceed to [your app name]" to continue.
 
