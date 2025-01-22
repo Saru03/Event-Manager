@@ -34,7 +34,7 @@ function Events() {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const response = await axios.get('https://event-manager-oicx.onrender.com/api/events', { withCredentials: true })
+                const response = await axios.get('https://event-manager-oicx.onrender.com/events', { withCredentials: true })
                 console.log(response.data)
                 const eventsData = response.data.events || [];
                 const formattedEvents = eventsData.map((event) => ({
@@ -70,7 +70,7 @@ function Events() {
 
         setLoading(true);
         try {
-            await axios.delete(`https://event-manager-oicx.onrender.com/api/events/${eventId}`, { 
+            await axios.delete(`https://event-manager-oicx.onrender.com/events/${eventId}`, { 
                 withCredentials: true 
             });
             const updatedEvents = events.filter(event => event.id !== eventId);
