@@ -60,7 +60,7 @@ app.get("/auth/google/callback",passport.authenticate('google',{failureRedirect:
     res.redirect('https://event-manager-oicx.onrender.com/events'); 
 })
 
-app.get("/events",async (req,res)=>{
+app.get("/api/events",async (req,res)=>{
     if (!req.user || !req.user.accessToken) {
         return res.status(401).json({ 
             message: "Not authenticated",
@@ -97,7 +97,7 @@ app.get("/events",async (req,res)=>{
     }
 })
 
-app.delete("/events/:eventId", async (req, res) => {
+app.delete("/api/events/:eventId", async (req, res) => {
     if (!req.user || !req.user.accessToken) {
         return res.status(401).json({
             message: "Not authenticated",
