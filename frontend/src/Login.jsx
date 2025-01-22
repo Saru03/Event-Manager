@@ -12,7 +12,7 @@ const providers = [
   ];
 
   const signIn = (provider) => {
-    window.location.href = "http://localhost:3000/auth/google";
+    window.location.href = "https://event-manager-oicx.onrender.com/auth/google";
   };
   
   

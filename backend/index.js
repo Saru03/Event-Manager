@@ -13,7 +13,7 @@ const path = require('path')
 const _dirname = path.resolve();
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://event-manager-oicx.onrender.com',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
@@ -38,7 +38,7 @@ app.use(passport.session())
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/google/callback"
+    callbackURL: "https://event-manager-oicx.onrender.com/auth/google/callback"
   },
   (accessToken, refreshToken, profile, done)=>{
     profile.accessToken = accessToken;
@@ -52,15 +52,15 @@ passport.deserializeUser((user,done)=>done(null,user))
 
 app.get("/auth/google",passport.authenticate('google',{scope:["profile","email","https://www.googleapis.com/auth/calendar.events"]}))
 
-app.get("/auth/google/callback",passport.authenticate('google',{failureRedirect:"http:localhost:5173/login"}),(req,res)=>{
-    res.redirect('http://localhost:5173/events'); 
+app.get("/auth/google/callback",passport.authenticate('google',{failureRedirect:"https://event-manager-oicx.onrender.com/auth/google"}),(req,res)=>{
+    res.redirect('https://event-manager-oicx.onrender.com/events'); 
 })
 
 app.get("/events",async (req,res)=>{
     if (!req.user || !req.user.accessToken) {
         return res.status(401).json({ 
             message: "Not authenticated",
-            redirectUrl: "http://localhost:5173/login"
+            redirectUrl: "https://event-manager-oicx.onrender.com/auth/google"
         });
     }
     const auth = new google.auth.OAuth2();
@@ -97,7 +97,7 @@ app.delete("/events/:eventId", async (req, res) => {
     if (!req.user || !req.user.accessToken) {
         return res.status(401).json({
             message: "Not authenticated",
-            redirectUrl: "http://localhost:5173/login"
+            redirectUrl: "https://event-manager-oicx.onrender.com/auth/google"
         })
     }
 
@@ -128,7 +128,7 @@ app.delete("/events/:eventId", async (req, res) => {
 
 app.get("/logout",(req,res)=>{
     req.logOut();
-    req.redirect("/login");
+    req.redirect("/auth/google");
 })
 
 app.use(express.static(path.join(_dirname,"/frontend/dist")))
