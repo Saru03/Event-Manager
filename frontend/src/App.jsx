@@ -7,7 +7,7 @@ import Events from './Events';
 function App() {
   const router = createBrowserRouter([
     {
-      path:'/login',
+      path:'/',
       element:<Login/>
     },
     {
